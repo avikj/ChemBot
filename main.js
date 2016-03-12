@@ -3,7 +3,7 @@ var wolfram = require('wolfram').createClient("WOLFRAM_API_KEY");
 var pt = require("periodic-table");
 var fs = require("fs");
 var elementData = pt.all();
-login({email: "loquaciousmeow@gmail.com", password: "veryweakpassword123"}, function callback (err, api) {
+login({email: "loquaciousmeow@gmail.com", password: "FACEBOOK_ACCOUNT_PASSWORD"}, function callback (err, api) {
     if(err) return console.error(err);
  
     api.listen(function callback(err, message) {
