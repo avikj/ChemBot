@@ -23,6 +23,7 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
 
     	// balance chemical equations
     	if(message.body.startsWith("balance")){
+    		api.sendMessage("Attempting to "+message.body+"...", message.threadID);
 			wolframClient.query(message.body, function(err, result) {
 				if(err) throw err;
 				try{
@@ -36,6 +37,7 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
 
     	// find molar mass
     	if(message.body.startsWith("mm")){
+    		api.sendMessage("Computing molar mass of "+message.body.substring(2)+"... ", message.threadID);
     		wolframClient.query("molar mass "+message.body.substring(2), function(err, result) {
 				if(err) throw err;
 				try{
@@ -48,10 +50,21 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
     	}
 
     	// find element by symbol
+    	if(message.body.trim().toUpperCase()=="FL")
+    		message.body = "uuq";
     	for(var i = 0; i < elementData.length; i++){
-			if(elementData[i].symbol.toUpperCase()==message.body.toUpperCase()){
+			if(elementData[i].symbol.toUpperCase()==message.body.trim().toUpperCase()){
+				if(elementData[i].symbol.toUpperCase()=="UUQ"){
+					api.sendMessage({
+						body: "Ununquadium (Uuq) has been renamed to Flevorium (Fl).",
+						attachment: fs.createReadStream(getImagePath(elementData[i]))
+					}, message.threadID);
+					console.log("Found element "+message.body);
+					return;
+				}
 				api.sendMessage({
-					body: format(elementData[i]),
+					//body: format(elementData[i]),
+					attachment: fs.createReadStream(getImagePath(elementData[i]))
 				}, message.threadID);
 				console.log("Found element "+message.body);
 				return;
@@ -68,3 +81,6 @@ function format(element){
 
 }
 
+function getImagePath(element){
+	return 'Images/'+element.atomicNumber+"-"+element.name+"-Tile.png";
+}
