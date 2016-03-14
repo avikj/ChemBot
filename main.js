@@ -82,5 +82,5 @@ function format(element){
 }
 
 function getImagePath(element){
-	return 'Images/'+element.atomicNumber+"-"+element.name+"-Tile.png";
+	return 'images/'+element.atomicNumber+"-"+element.name+"-Tile.png";
 }
