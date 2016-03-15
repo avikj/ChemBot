@@ -6,3 +6,5 @@ secretData.json
 *.db
 daemon/
 ChemBotInstaller.js
+*.pem
+*.ppk
