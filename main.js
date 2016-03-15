@@ -2,14 +2,14 @@ var login = require("facebook-chat-api");
 var wolfram = require('wolfram');
 var pt = require("periodic-table");
 var fs = require("fs");
-var secretData = JSON.parse(fs.readFileSync(__dirname+"\\secretData.json"));
+var secretData = JSON.parse(fs.readFileSync(__dirname+"/secretData.json"));
 console.log(secretData);
 var wolframClient = wolfram.createClient(secretData.WOLFRAM_API_KEY);
 
 var elementData = pt.all();
 
 login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}, function callback (err, api) {
-    if(err) return console.error(err);
+    if(err) return console.error(err); 
  
     api.listen(function callback(err, message) {
     	// help message
@@ -86,5 +86,5 @@ function format(element){
 }
 
 function getImagePath(element){
-	return __dirname+'\\images\\'+element.atomicNumber+"-"+element.name+"-Tile.png";
+	return __dirname+'/images/'+element.atomicNumber+"-"+element.name+"-Tile.png";
 }
