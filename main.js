@@ -63,7 +63,7 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
 					return;
 				}
 				api.sendMessage({
-					//body: format(elementData[i]),
+					body: format(elementData[i]),
 					attachment: fs.createReadStream(getImagePath(elementData[i]))
 				}, message.threadID);
 				console.log("Found element "+message.body);
