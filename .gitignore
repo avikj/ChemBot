@@ -3,4 +3,6 @@ node_modules/
 build/
 test.js
 secretData.json
-images/Thumbs.db
+*.db
+daemon/
+ChemBotInstaller.js

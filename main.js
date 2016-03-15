@@ -2,7 +2,7 @@ var login = require("facebook-chat-api");
 var wolfram = require('wolfram');
 var pt = require("periodic-table");
 var fs = require("fs");
-var secretData = JSON.parse(fs.readFileSync("secretData.json"));
+var secretData = JSON.parse(fs.readFileSync(__dirname+"\\secretData.json"));
 console.log(secretData);
 var wolframClient = wolfram.createClient(secretData.WOLFRAM_API_KEY);
 
@@ -75,12 +75,12 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
 });
 
 function format(element){
-	return element.symbol+" is the symbol for "+element.name
+	return element.symbol+" is the symbol for "+(element.name.startsWith("Aluminum") ? "Aluminum" : element.name)
 	+". Its atomic number is "+element.atomicNumber
 	+" and its atomic mass is "+element.atomicMass+" amu.";
 
 }
 
 function getImagePath(element){
-	return 'images/'+element.atomicNumber+"-"+element.name+"-Tile.png";
+	return __dirname+'\\images\\'+element.atomicNumber+"-"+element.name+"-Tile.png";
 }
