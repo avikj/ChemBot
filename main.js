@@ -41,9 +41,13 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
     		wolframClient.query("molar mass "+message.body.substring(2), function(err, result) {
 				if(err) throw err;
 				try{
+					if(result[1].subpods[0].value.contains("data not available")){
+						api.sendMessage("There was an error computing the molar mass. Make sure that you use proper capitalization.", message.threadID);
+						return;
+					}
 					api.sendMessage("The molar mass of "+message.body.substring(2)+" is "+result[1].subpods[0].value+".", message.threadID);
 				}catch(e){
-					api.sendMessage("There was an error computing the molar mass. Make sure that you use proper capitalization.", message.threadID)
+					api.sendMessage("There was an error computing the molar mass. Make sure that you use proper capitalization.", message.threadID);
 				}
 			});
 			return;
