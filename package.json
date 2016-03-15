@@ -1,9 +1,15 @@
 {
   "name": "ChemBot",
   "version": "0.0.1",
+  "description" : "A Facebook Messenger bot that provides utilities to make chemistry homework easier.",
+  "author" : "Avik Jain <avik@avikjain.me>",
   "dependencies": {
     "facebook-chat-api": "^1.0.7",
     "periodic-table": "0.0.2",
     "wolfram": "^0.3.2"
-  }
+  },
+  "repository" : {
+	  "type": "git",
+	  "url": "git://github.com/avikj/ChemBot.git"
+  },
 }
