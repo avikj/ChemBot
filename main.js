@@ -56,14 +56,14 @@ login({email: secretData.FACEBOOK_EMAIL, password: secretData.FACEBOOK_PASSWORD}
 			if(elementData[i].symbol.toUpperCase()==message.body.trim().toUpperCase()){
 				if(elementData[i].symbol.toUpperCase()=="UUQ"){
 					api.sendMessage({
-						body: "Ununquadium (Uuq) has been renamed to Flevorium (Fl).",
+						// body: "Ununquadium (Uuq) has been renamed to Flevorium (Fl).",
 						attachment: fs.createReadStream(getImagePath(elementData[i]))
 					}, message.threadID);
 					console.log("Found element "+message.body);
 					return;
 				}
 				api.sendMessage({
-					body: format(elementData[i]),
+					// body: format(elementData[i]),
 					attachment: fs.createReadStream(getImagePath(elementData[i]))
 				}, message.threadID);
 				console.log("Found element "+message.body);
